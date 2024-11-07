@@ -24,7 +24,7 @@ import java.util.TimeZone;
 public class MyRedisConfig {
     @Autowired
     private RedisConnectionFactory factory;
-
+    String a="a";
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {

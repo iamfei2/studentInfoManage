@@ -50,7 +50,6 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
             //返回数据
             Map<String,Object> data=new HashMap<>();
             data.put("token",key);
-            String a="123";
             return data;
         }
 
