@@ -24,7 +24,7 @@ import java.util.TimeZone;
 public class MyRedisConfig {
     @Autowired
     private RedisConnectionFactory factory;
-    String a="a";
+
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {
@@ -33,8 +33,6 @@ public class MyRedisConfig {
 
         redisTemplate.setKeySerializer(new StringRedisSerializer());
 
-        Jackson2JsonRedisSerializer serializer=new Jackson2JsonRedisSerializer<Object>(Object.class);
-        redisTemplate.setValueSerializer(serializer);
 
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
@@ -46,7 +44,9 @@ public class MyRedisConfig {
         om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL,
                 JsonTypeInfo.As.PROPERTY);
         om.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        serializer.setObjectMapper(om);
+        Jackson2JsonRedisSerializer serializer=new Jackson2JsonRedisSerializer<Object>(om,Object.class);
+        redisTemplate.setValueSerializer(serializer);
+
 
         return redisTemplate;
     }

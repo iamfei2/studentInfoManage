@@ -35,4 +35,18 @@ public class StudentController {
         return Result.fail("用户名或密码错误");
 
     }
+
+    @GetMapping("/info")
+    public Result<Map<String, Object>> getSdudentInfo(@RequestParam("token") String token) {
+        //根据token来获取用户信息
+        Map<String, Object> data=studentService.getStudentInfo(token);
+        if(data != null){
+            return Result.suc(data);
+        }
+        return Result.fail("登录信息无效，请重新登录");
+
+    }
+
+
+
 }

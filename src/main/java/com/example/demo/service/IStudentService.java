@@ -16,4 +16,6 @@ import java.util.Map;
 public interface IStudentService extends IService<Student> {
 
     Map<String, Object> login(Student student);
+
+    Map<String, Object> getStudentInfo(String token);
 }
