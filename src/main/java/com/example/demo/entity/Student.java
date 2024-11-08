@@ -27,6 +27,12 @@ public class Student implements Serializable {
 
     private String studentPassward;
 
+    private int roleId=1;
+
+    public int getRole_id() {
+        return roleId;
+    }
+
     public String getStudentId() {
         return studentId;
     }

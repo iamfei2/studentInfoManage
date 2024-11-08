@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,7 +38,7 @@ public class StudentController {
     }
 
     @GetMapping("/info")
-    public Result<Map<String, Object>> getSdudentInfo(@RequestParam("token") String token) {
+    public Result<Map<String, Object>> getStudentInfo(@RequestParam("token") String token) {
         //根据token来获取用户信息
         Map<String, Object> data=studentService.getStudentInfo(token);
         if(data != null){
@@ -47,6 +48,13 @@ public class StudentController {
 
     }
 
-
+    @GetMapping ("/sc")
+    public Result<List<String>> getStudentCourse(@RequestParam String studentId) {
+        List<String> data=studentService.getCourseIdByStudentId(studentId);
+        if(data != null){
+            return Result.suc(data);
+        }
+        return Result.fail("获取课程列表失败");
+    }
 
 }
